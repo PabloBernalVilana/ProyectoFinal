@@ -1,5 +1,9 @@
 package app.dao;
 
-public interface IOtroDAO {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import app.dto.Otro;
+
+public interface IOtroDAO extends JpaRepository<Otro, Long> {
 
 }

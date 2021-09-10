@@ -1,5 +1,9 @@
-	package app.dao;
+package app.dao;
 
-public interface IVideoDAO {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import app.dto.Video;
+
+public interface IVideoDAO extends JpaRepository<Video, Long> {
 
 }

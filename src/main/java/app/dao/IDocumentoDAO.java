@@ -1,5 +1,9 @@
 package app.dao;
 
-public interface IDocumentoDAO {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import app.dto.Documento;
+
+public interface IDocumentoDAO extends JpaRepository<Documento, Long> {
 
 }

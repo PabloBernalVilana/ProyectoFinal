@@ -1,5 +1,9 @@
 package app.dao;
 
-public interface IAdministradorDAO {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import app.dto.Administrador;
+
+public interface IAdministradorDAO extends JpaRepository<Administrador, Long>{
 
 }
