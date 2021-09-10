@@ -1,5 +1,9 @@
 package app.dao;
 
-public interface ICategoriaDAO {
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import app.dto.Categoria;
+
+public interface ICategoriaDAO extends JpaRepository<Categoria, Integer> {
 
 }
