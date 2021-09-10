@@ -7,14 +7,14 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "contenidos")
+@MappedSuperclass
 public class Contenido {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int contenido_id;
+	protected int contenido_id;
 
 	@Column(name = "nombre")
 	protected String name;

@@ -10,12 +10,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "imagenes")
+@Table(name="imagenes")
 public class Imagen extends Contenido {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int imagens_id;
+	private int imagen_id;
 
 	@Column(name = "dimensiones")
 	private String sizes;
@@ -40,15 +40,15 @@ public class Imagen extends Contenido {
 	}
 
 	/**
-	 * @param imagens_id
+	 * @param imagen_id
 	 * @param sizes
 	 * @param width
 	 * @param height
 	 * @param author
 	 * @param copyright
 	 */
-	public Imagen(int imagens_id, String sizes, int width, int height, String author, boolean copyright) {
-		this.imagens_id = imagens_id;
+	public Imagen(int imagen_id, String sizes, int width, int height, String author, boolean copyright) {
+		this.imagen_id = imagen_id;
 		this.sizes = sizes;
 		this.width = width;
 		this.height = height;
@@ -72,15 +72,15 @@ public class Imagen extends Contenido {
 	/**
 	 * @return the imagens_id
 	 */
-	public int getImagens_id() {
-		return imagens_id;
+	public int getImagen_id() {
+		return imagen_id;
 	}
 
 	/**
 	 * @param imagens_id the imagens_id to set
 	 */
-	public void setImagens_id(int imagens_id) {
-		this.imagens_id = imagens_id;
+	public void setImagen_id(int imagen_id) {
+		this.imagen_id = imagen_id;
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class Imagen extends Contenido {
 
 	@Override
 	public String toString() {
-		return "Imagen [imagens_id=" + imagens_id + ", sizes=" + sizes + ", width=" + width + ", height=" + height
+		return "Imagen [imagen_id=" + imagen_id + ", sizes=" + sizes + ", width=" + width + ", height=" + height
 				+ ", author=" + author + ", copyright=" + copyright + "]";
 	}
 
