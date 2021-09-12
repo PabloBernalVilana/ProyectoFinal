@@ -1,20 +1,22 @@
 package app.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "documentos")
 public class Documento extends Contenido {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int documento_id;
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private int documento_id;
 
 	@Column(name = "paginas")
 	private int pages;
@@ -29,7 +31,6 @@ public class Documento extends Contenido {
 	 * 
 	 */
 	public Documento() {
-
 	}
 
 	/**
@@ -38,8 +39,7 @@ public class Documento extends Contenido {
 	 * @param author
 	 * @param description
 	 */
-	public Documento(int documento_id, int pages, String author, String description) {
-		this.documento_id = documento_id;
+	public Documento(int pages, String author, String description) {
 		this.pages = pages;
 		this.author = author;
 		this.description = description;
@@ -47,30 +47,32 @@ public class Documento extends Contenido {
 
 	/**
 	 * @param contenido_id
+	 * @param gestion
 	 * @param name
 	 * @param uploadDate
 	 * @param modifiedDate
 	 * @param path
 	 * @param extension
 	 */
-	public Documento(int contenido_id, String name, Date uploadDate, Date modifiedDate, String path, String extension) {
-		super(contenido_id, name, uploadDate, modifiedDate, path, extension);
+	public Documento(int contenido_id, List<Gestion> gestion, String name, Date uploadDate, Date modifiedDate,
+			String path, String extension) {
+		super(contenido_id, gestion, name, uploadDate, modifiedDate, path, extension);
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * @return the documento_id
 	 */
-	public int getDocumento_id() {
-		return documento_id;
-	}
+//	public int getDocumento_id() {
+//		return documento_id;
+//	}
 
 	/**
 	 * @param documento_id the documento_id to set
 	 */
-	public void setDocumento_id(int documento_id) {
-		this.documento_id = documento_id;
-	}
+//	public void setDocumento_id(int documento_id) {
+//		this.documento_id = documento_id;
+//	}
 
 	/**
 	 * @return the pages
@@ -116,8 +118,9 @@ public class Documento extends Contenido {
 
 	@Override
 	public String toString() {
-		return "Documento [documento_id=" + documento_id + ", pages=" + pages + ", author=" + author + ", description="
+		return "Documento [pages=" + pages + ", author=" + author + ", description="
 				+ description + "]";
 	}
-
+	
+	
 }

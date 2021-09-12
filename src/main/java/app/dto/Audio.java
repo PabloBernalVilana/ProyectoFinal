@@ -1,20 +1,24 @@
 package app.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "audios")
 public class Audio extends Contenido {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long audio_id;
+	
+	
+//	@Id
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private int audio_id;
 
 	@Column(name = "descripcion")
 	private String description;
@@ -32,7 +36,6 @@ public class Audio extends Contenido {
 	 * 
 	 */
 	public Audio() {
-
 	}
 
 	/**
@@ -42,8 +45,7 @@ public class Audio extends Contenido {
 	 * @param duration
 	 * @param author
 	 */
-	public Audio(long audio_id, String description, String sizes, long duration, String author) {
-		this.audio_id = audio_id;
+	public Audio(String description, String sizes, long duration, String author) {
 		this.description = description;
 		this.sizes = sizes;
 		this.duration = duration;
@@ -52,30 +54,32 @@ public class Audio extends Contenido {
 
 	/**
 	 * @param contenido_id
+	 * @param gestion
 	 * @param name
 	 * @param uploadDate
 	 * @param modifiedDate
 	 * @param path
 	 * @param extension
 	 */
-	public Audio(int contenido_id, String name, Date uploadDate, Date modifiedDate, String path, String extension) {
-		super(contenido_id, name, uploadDate, modifiedDate, path, extension);
+	public Audio(int contenido_id, List<Gestion> gestion, String name, Date uploadDate, Date modifiedDate, String path,
+			String extension) {
+		super(contenido_id, gestion, name, uploadDate, modifiedDate, path, extension);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * @return the audio_id
 	 */
-	public long getAudio_id() {
-		return audio_id;
-	}
+//	public int getAudio_id() {
+//		return audio_id;
+//	}
 
 	/**
 	 * @param audio_id the audio_id to set
 	 */
-	public void setAudio_id(long audio_id) {
-		this.audio_id = audio_id;
-	}
+//	public void setAudio_id(int audio_id) {
+//		this.audio_id = audio_id;
+//	}
 
 	/**
 	 * @return the description
@@ -135,7 +139,7 @@ public class Audio extends Contenido {
 
 	@Override
 	public String toString() {
-		return "Audio [audio_id=" + audio_id + ", description=" + description + ", sizes=" + sizes + ", duration="
+		return "description=" + description + ", sizes=" + sizes + ", duration="
 				+ duration + ", author=" + author + "]";
 	}
 

@@ -5,8 +5,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "categorias")
@@ -15,6 +18,10 @@ public class Categoria {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int categoria_id;
+
+	@OneToMany
+	@JoinColumn(name = "categoria_id")
+	private List<Gestion> gestion;
 
 	@Column(name = "nombre")
 	private String name;
@@ -39,15 +46,17 @@ public class Categoria {
 
 	/**
 	 * @param categoria_id
+	 * @param gestion
 	 * @param name
 	 * @param uploadDate
 	 * @param modifiedDate
 	 * @param path
 	 * @param extension
 	 */
-	public Categoria(int categoria_id, String name, Date uploadDate, Date modifiedDate, String path,
-			String extension) {
+	public Categoria(int categoria_id, List<Gestion> gestion, String name, Date uploadDate, Date modifiedDate,
+			String path, String extension) {
 		this.categoria_id = categoria_id;
+		this.gestion = gestion;
 		this.name = name;
 		this.uploadDate = uploadDate;
 		this.modifiedDate = modifiedDate;
@@ -58,7 +67,7 @@ public class Categoria {
 	/**
 	 * @return the categoria_id
 	 */
-	public long getCategoria_id() {
+	public int getCategoria_id() {
 		return categoria_id;
 	}
 
@@ -67,6 +76,20 @@ public class Categoria {
 	 */
 	public void setCategoria_id(int categoria_id) {
 		this.categoria_id = categoria_id;
+	}
+
+	/**
+	 * @return the gestion
+	 */
+	public List<Gestion> getGestion() {
+		return gestion;
+	}
+
+	/**
+	 * @param gestion the gestion to set
+	 */
+	public void setGestion(List<Gestion> gestion) {
+		this.gestion = gestion;
 	}
 
 	/**
@@ -141,8 +164,8 @@ public class Categoria {
 
 	@Override
 	public String toString() {
-		return "Categoria [categoria_id=" + categoria_id + ", name=" + name + ", uploadDate=" + uploadDate
-				+ ", modifiedDate=" + modifiedDate + ", path=" + path + ", extension=" + extension + "]";
+		return "Categoria [categoria_id=" + categoria_id + ", gestion=" + gestion + ", name=" + name + ", uploadDate="
+				+ uploadDate + ", modifiedDate=" + modifiedDate + ", path=" + path + ", extension=" + extension + "]";
 	}
 
 }

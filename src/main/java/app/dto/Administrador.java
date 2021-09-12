@@ -1,20 +1,30 @@
 package app.dto;
 
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "administradores")
+
 public class Administrador {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long administrador_id;
 
-	@Column(name = "contraseña")
+	@OneToMany
+	@JoinColumn(name = "administrador_id")
+	private List<Gestion> gestion;
+
+	@Column(name = "passwd")
 	private String password;
 
 	@Column(name = "telefono")
@@ -34,13 +44,16 @@ public class Administrador {
 
 	/**
 	 * @param administrador_id
+	 * @param gestion
 	 * @param password
 	 * @param phoneNumber
 	 * @param name
 	 * @param email
 	 */
-	public Administrador(long administrador_id, String password, long phoneNumber, String name, String email) {
+	public Administrador(long administrador_id, List<Gestion> gestion, String password, long phoneNumber, String name,
+			String email) {
 		this.administrador_id = administrador_id;
+		this.gestion = gestion;
 		this.password = password;
 		this.phoneNumber = phoneNumber;
 		this.name = name;
@@ -59,6 +72,20 @@ public class Administrador {
 	 */
 	public void setAdministrador_id(long administrador_id) {
 		this.administrador_id = administrador_id;
+	}
+
+	/**
+	 * @return the gestion
+	 */
+	public List<Gestion> getGestion() {
+		return gestion;
+	}
+
+	/**
+	 * @param gestion the gestion to set
+	 */
+	public void setGestion(List<Gestion> gestion) {
+		this.gestion = gestion;
 	}
 
 	/**
@@ -119,8 +146,8 @@ public class Administrador {
 
 	@Override
 	public String toString() {
-		return "Administrador [administrador_id=" + administrador_id + ", password=" + password + ", phoneNumber="
-				+ phoneNumber + ", name=" + name + ", email=" + email + "]";
+		return "Administrador [administrador_id=" + administrador_id + ", gestion=" + gestion + ", password=" + password
+				+ ", phoneNumber=" + phoneNumber + ", name=" + name + ", email=" + email + "]";
 	}
 
 }

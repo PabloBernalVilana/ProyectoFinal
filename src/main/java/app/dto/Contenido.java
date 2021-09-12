@@ -1,28 +1,42 @@
 package app.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.MappedSuperclass;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
-@MappedSuperclass
+@Entity
+@Table(name="contenidos")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 public class Contenido {
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.TABLE)
 	protected int contenido_id;
-
+	
+	@OneToMany
+	@JoinColumn(name = "contenido_id")
+	private List<Gestion> gestion;
+	
 	@Column(name = "nombre")
 	protected String name;
 
 	@Column(name = "fecha_subida")
+	@Temporal(TemporalType.DATE)
 	protected Date uploadDate;
 
 	@Column(name = "fecha_modificacion")
+	@Temporal(TemporalType.DATE)
 	protected Date modifiedDate;
 
 	@Column(name = "ruta_publica")
@@ -39,14 +53,17 @@ public class Contenido {
 
 	/**
 	 * @param contenido_id
+	 * @param gestion
 	 * @param name
 	 * @param uploadDate
 	 * @param modifiedDate
 	 * @param path
 	 * @param extension
 	 */
-	public Contenido(int contenido_id, String name, Date uploadDate, Date modifiedDate, String path, String extension) {
+	public Contenido(int contenido_id, List<Gestion> gestion, String name, Date uploadDate, Date modifiedDate,
+			String path, String extension) {
 		this.contenido_id = contenido_id;
+		this.gestion = gestion;
 		this.name = name;
 		this.uploadDate = uploadDate;
 		this.modifiedDate = modifiedDate;
@@ -66,6 +83,20 @@ public class Contenido {
 	 */
 	public void setContenido_id(int contenido_id) {
 		this.contenido_id = contenido_id;
+	}
+
+	/**
+	 * @return the gestion
+	 */
+	public List<Gestion> getGestion() {
+		return gestion;
+	}
+
+	/**
+	 * @param gestion the gestion to set
+	 */
+	public void setGestion(List<Gestion> gestion) {
+		this.gestion = gestion;
 	}
 
 	/**
@@ -136,6 +167,12 @@ public class Contenido {
 	 */
 	public void setExtension(String extension) {
 		this.extension = extension;
+	}
+
+	@Override
+	public String toString() {
+		return "Contenido [contenido_id=" + contenido_id + ", gestion=" + gestion + ", name=" + name + ", uploadDate="
+				+ uploadDate + ", modifiedDate=" + modifiedDate + ", path=" + path + ", extension=" + extension + "]";
 	}
 
 }

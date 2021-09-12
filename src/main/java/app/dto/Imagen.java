@@ -1,21 +1,20 @@
 package app.dto;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="imagenes")
+@Table(name = "imagenes")
 public class Imagen extends Contenido {
 
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int imagen_id;
+//	@Id
+//	@Column(name="imagen_id")
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
+//	private int imagen_id;
 
 	@Column(name = "dimensiones")
 	private String sizes;
@@ -29,14 +28,13 @@ public class Imagen extends Contenido {
 	@Column(name = "autor")
 	private String author;
 
-	@Column(name = "copyright")
-	private boolean copyright;
+	@Column(name = "copyright", columnDefinition = "BOOLEAN")
+	private boolean haveCopyright;
 
 	/**
 	 * 
 	 */
 	public Imagen() {
-
 	}
 
 	/**
@@ -45,43 +43,44 @@ public class Imagen extends Contenido {
 	 * @param width
 	 * @param height
 	 * @param author
-	 * @param copyright
+	 * @param haveCopyright
 	 */
-	public Imagen(int imagen_id, String sizes, int width, int height, String author, boolean copyright) {
-		this.imagen_id = imagen_id;
+	public Imagen(String sizes, int width, int height, String author, boolean haveCopyright) {
 		this.sizes = sizes;
 		this.width = width;
 		this.height = height;
 		this.author = author;
-		this.copyright = copyright;
+		this.haveCopyright = haveCopyright;
 	}
 
 	/**
 	 * @param contenido_id
+	 * @param gestion
 	 * @param name
 	 * @param uploadDate
 	 * @param modifiedDate
 	 * @param path
 	 * @param extension
 	 */
-	public Imagen(int contenido_id, String name, Date uploadDate, Date modifiedDate, String path, String extension) {
-		super(contenido_id, name, uploadDate, modifiedDate, path, extension);
+	public Imagen(int contenido_id, List<Gestion> gestion, String name, Date uploadDate, Date modifiedDate, String path,
+			String extension) {
+		super(contenido_id, gestion, name, uploadDate, modifiedDate, path, extension);
 		// TODO Auto-generated constructor stub
 	}
 
 	/**
-	 * @return the imagens_id
+	 * @return the imagen_id
 	 */
-	public int getImagen_id() {
-		return imagen_id;
-	}
+//	public int getImagen_id() {
+//		return imagen_id;
+//	}
 
 	/**
-	 * @param imagens_id the imagens_id to set
+	 * @param imagen_id the imagen_id to set
 	 */
-	public void setImagen_id(int imagen_id) {
-		this.imagen_id = imagen_id;
-	}
+//	public void setImagen_id(int imagen_id) {
+//		this.imagen_id = imagen_id;
+//	}
 
 	/**
 	 * @return the sizes
@@ -140,23 +139,23 @@ public class Imagen extends Contenido {
 	}
 
 	/**
-	 * @return the copyright
+	 * @return the haveCopyright
 	 */
-	public boolean isCopyright() {
-		return copyright;
+	public boolean isHaveCopyright() {
+		return haveCopyright;
 	}
 
 	/**
-	 * @param copyright the copyright to set
+	 * @param haveCopyright the haveCopyright to set
 	 */
-	public void setCopyright(boolean copyright) {
-		this.copyright = copyright;
+	public void setHaveCopyright(boolean haveCopyright) {
+		this.haveCopyright = haveCopyright;
 	}
 
 	@Override
 	public String toString() {
-		return "Imagen [imagen_id=" + imagen_id + ", sizes=" + sizes + ", width=" + width + ", height=" + height
-				+ ", author=" + author + ", copyright=" + copyright + "]";
+		return "Imagen [sizes=" + sizes + ", width=" + width + ", height=" + height
+				+ ", author=" + author + ", haveCopyright=" + haveCopyright + "]";
 	}
 
 }

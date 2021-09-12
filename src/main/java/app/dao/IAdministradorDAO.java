@@ -4,6 +4,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import app.dto.Administrador;
 
-public interface IAdministradorDAO extends JpaRepository<Administrador, Long>{
+public interface IAdministradorDAO extends JpaRepository<Administrador, Integer>{
 
 }
