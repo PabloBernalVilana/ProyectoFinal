@@ -1,12 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginformComponent } from './loginform/loginform.component';
 
-const routes: Routes = [
-  {
-    path:'', component:LoginformComponent
-  }
-];
+const routes: Routes = [];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
